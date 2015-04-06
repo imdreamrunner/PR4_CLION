@@ -16,6 +16,8 @@
 #define SIG_PF void(*)(int)
 #endif
 
+
+
 static rpc_minify_out *
 _rpc_minify_jpeg_proc_1 (rpc_minify_in  *argp, struct svc_req *rqstp)
 {

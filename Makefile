@@ -8,12 +8,7 @@ MAGICK_LIBS = `pkg-config --libs MagickCore`
 
 #### RPC Client Part ####
 
-SRCS=$(wildcard *.c)
-
-OBJS=$(SRCS:.c=.o)
-
-all: $(OBJS)
-
+all: minifyjpeg_main minifyjpeg_svc
 
 magickminify.o: magickminify.c
 	$(CC) -c $^ $(MAGICK_FLAGS)
@@ -27,7 +22,7 @@ magickminify_test: magickminify.o magickminify_test.o
 minifyjpeg_main: minifyjpeg_main.o minify_via_rpc.o steque.o
 	$(CC) -o $@ $(CFLAGS) $^  $(LIBS)
 
-minifyjpeg_svc: minifyjpeg_svc.o  minifyjpeg_xdr.o minifyjpeg.o magickminify.o steque.o
+minifyjpeg_svc:  minifyjpeg_xdr.o minifyjpeg.o magickminify.o steque.o minifyjpeg_svc.o
 	$(CC) -o $@ $(CFLAGS) $(MAGICK_FLAGS) -DRPC_SVC_FG $^  $(LIBS) $(MAGICK_LIBS)
 
 #### Cleanup ####

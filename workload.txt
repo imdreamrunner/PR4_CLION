@@ -1,1 +1,2 @@
-paraglider.jpg paraglider_small.jpg
+sample.jpg sample_small.jpg
+

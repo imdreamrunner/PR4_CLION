@@ -75,6 +75,7 @@ static void* read_from_file(char* filename, size_t *len){
   fclose(infile);
 
   *len = file_len;
+
   return buffer;
 }
 
