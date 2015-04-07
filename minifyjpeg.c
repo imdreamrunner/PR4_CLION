@@ -28,11 +28,6 @@ rpc_minify_out * rpc_minify_jpeg_proc_1_svc(rpc_minify_in in , struct svc_req * 
 
     dest->dest.dest_val = magickminify((void*)in.src.src_val,src_length,&dst_length);
 
-    //printf("size of buffer is %lu\n",sizeof(buffer));
-
-    //printf("copy retrieved buffer into return buffer\n");
-    //memcpy(dest->dest.dest_val,(char*)buffer,dst_length);
-
     printf("set return length of %zu\n",dst_length);
     dest->dest.dest_len = dst_length;
 

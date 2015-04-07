@@ -23,17 +23,14 @@ void* minify_via_rpc(CLIENT* clnt, void* src_val, size_t src_len, size_t *dst_le
   service_in.src.src_val = src_val;
   service_in.src.src_len = src_len;
 
-  printf("FILE LEN INSIDE MINIFY FUNCTION IS %u\n\n",service_in.src.src_len);
+  printf("file len of source is %u\n\n",service_in.src.src_len);
   printf("calling rpc_minify_jpeg_proc1\n");
 
   service_out =  rpc_minify_jpeg_proc_1(service_in,clnt);
 
-  printf("New file length is: %u\n\n",service_out->dest.dest_len);
+  printf("new file length of dest is: %u\n\n",service_out->dest.dest_len);
 
   *dst_len = service_out->dest.dest_len;
-
-  printf("dstlen pointer is %zu\n",*dst_len);
-
 
   void* return_buffer = malloc(service_out->dest.dest_len);
   printf("copying service_out buffer to return buffer\n");
