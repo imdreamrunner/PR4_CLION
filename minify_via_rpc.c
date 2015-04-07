@@ -16,12 +16,12 @@ void* minify_via_rpc(CLIENT* clnt, void* src_val, size_t src_len, size_t *dst_le
   //-------CLIENT SIDE CODE HERE--------
 //create client
 
-  struct rpc_minify_out * service_out;
+  struct rpc_minify_out * service_out = malloc(sizeof(*service_out));
   struct rpc_minify_in service_in;
 
-  printf("src val: %s\n",(char*)src_val);
+  //printf("src val: %s\n",(char*)src_val);
   memcpy(service_in.src.src_val,src_val,src_len);
-  printf("service_in.src val: %s\n",service_in.src.src_val);
+  //printf("service_in.src val: %s\n",service_in.src.src_val);
 
   service_in.src.src_len = src_len;
 
@@ -32,13 +32,19 @@ void* minify_via_rpc(CLIENT* clnt, void* src_val, size_t src_len, size_t *dst_le
 
   printf("New file length is: %u\n\n",service_out->dest.dest_len);
 
-  //void* return_buffer = malloc(service_out->dest.dest_len);
+  size_t dlen = service_out->dest.dest_len;
+  dst_len = &dlen;
+
+  printf("dstlen pointer is %zu\n",*dst_len);
+
+  void* return_buffer = malloc(service_out->dest.dest_len);
   printf("copying service_out buffer to return buffer\n");
 
-  //memcpy(return_buffer,service_out->dest.dest_val,service_out->dest.dest_len);
+  memcpy(return_buffer,service_out->dest.dest_val,service_out->dest.dest_len);
 
   printf("return retrieved buffer");
-  return service_out->dest.dest_val;
+
+  return return_buffer;
 }
 
 

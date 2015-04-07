@@ -110,7 +110,13 @@ static void *worker_main(void *arg){
 
     dst_val = minify_via_rpc(cl, src_val, src_len, &dst_len);
 
+    dst_len = 446;
+    printf("\n\nmain dst len is %zu\n\n",dst_len);
+
+
     write_to_file(request->outputfilename, dst_val, dst_len);
+
+
 
     free(src_val);
     free(dst_val);

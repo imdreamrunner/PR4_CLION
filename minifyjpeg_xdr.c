@@ -8,7 +8,7 @@
 bool_t
 xdr_rpc_minify_in (XDR *xdrs, rpc_minify_in *objp)
 {
-	//register int32_t *buf;
+	//sun register int32_t *buf;
 
 	 if (!xdr_bytes (xdrs, (char **)&objp->src.src_val, (u_int *) &objp->src.src_len, ~0))
 		 return FALSE;
